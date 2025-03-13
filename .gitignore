@@ -1,0 +1,47 @@
+# Node.js dependencies (Backend & Frontend)
+backend/node_modules/
+frontend/node_modules/
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Environment variables
+backend/.env
+frontend/.env
+.env
+
+# Build output
+backend/dist/
+backend/build/
+frontend/build/
+dist/
+build/
+coverage/
+
+# Logs
+logs/
+*.log
+pids/
+*.pid
+*.seed
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.tgz
+*.zip
+
+# Local data (Backend file uploads)
+backend/src/uploads/
+src/uploads/
