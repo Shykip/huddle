@@ -3,11 +3,17 @@ import userRouter from "./routes/user";
 import { app, server } from "./config/socket";
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { AppDataSource } from "./database/datasource";
+import compression from "compression";
+import cookieParser from "cookie-parser";
+import { errorHandler } from "./utils/errorHandler";
 
 dotenv.config();
 
 const PORT = process.env.SERVER_PORT || 8080;
 
+app.use(compression());
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     origin: process.env.ORIGIN || 'localhost:3000',
@@ -15,8 +21,12 @@ app.use(cors({
     credentials: true
 }))
 
-app.use("/", userRouter);
+app.use("/api/user", userRouter);
 
-server.listen(PORT, () => {
-    console.log("Server listening on port " + PORT);
+AppDataSource.initialize().then(() => {
+    server.listen(PORT, () => {
+        console.log("Server listening on port " + PORT);
+    })
 })
+
+app.use(errorHandler);
